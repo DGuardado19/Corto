@@ -51,12 +51,13 @@ public class vista extends JFrame {
     DefaultTableModel tm;
 
     public vista() {
+        //hicieron falta un par de cosas, falta de tiempo
         super("Inventario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         agregarLabels();
         formulario();
-        // llenarTabla();
+       //  llenarTabla();
         Container container = getContentPane();
         container.add(precio);
         container.add(nombre);
@@ -78,7 +79,7 @@ public class vista extends JFrame {
         container.add(lblprecio);
         container.add(limpiar);
         setSize(700, 500);
-//        eventos();
+        eventos();
     }
 
     public final void agregarLabels() {
