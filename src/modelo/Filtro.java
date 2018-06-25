@@ -76,7 +76,7 @@ public class Filtro {
     public Filtro() {
     }
 
-    public Filtro(int id, String codigo, int cantidad, boolean disponibilidad, String tipo, String nombre, double precio) {
+    public Filtro(int id, String nombre, String codigo, String tipo, int cantidad, double precio, Boolean disponibilidad) {
         this.id = id;
         this.cantidad = cantidad;
         this.codigo = codigo;
@@ -86,7 +86,8 @@ public class Filtro {
         this.tipo = tipo;
     }
 
-    public Filtro(String codigo, int cantidad, boolean disponibilidad, String tipo, String nombre, double precio) {
+    public Filtro(String nombre, String codigo, String tipo, int cantidad, double precio, Boolean disponibilidad) {
+
         this.cantidad = cantidad;
         this.codigo = codigo;
         this.disponibilidad = disponibilidad;
@@ -95,10 +96,12 @@ public class Filtro {
         this.tipo = tipo;
     }
 
-    public Filtro(int cantidad, boolean disponibilidad, String tipo, String nombre, double precio) {
+    public Filtro(String tipo, int cantidad, double precio, Boolean disponibilidad) {
+
         this.cantidad = cantidad;
+      
         this.disponibilidad = disponibilidad;
-        this.nombre = nombre;
+
         this.precio = precio;
         this.tipo = tipo;
     }

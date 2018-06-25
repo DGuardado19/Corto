@@ -52,12 +52,12 @@ public class vista extends JFrame {
 
     public vista() {
         //hicieron falta un par de cosas, falta de tiempo
-        super("Inventario");
+        super(" cORTO");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         agregarLabels();
         formulario();
-       //  llenarTabla();
+        //  llenarTabla();
         Container container = getContentPane();
         container.add(precio);
         container.add(nombre);
@@ -114,16 +114,16 @@ public class vista extends JFrame {
         limpiar = new JButton("Limpiar");
 
         table = new JPanel();
-        marca.addItem("a");
-        marca.addItem("b");
-        marca.addItem("c");
-        marca.addItem("d");
+        marca.addItem("Fruta");
+        marca.addItem("Verdura");
+        marca.addItem("Bebida");
+        marca.addItem("Dulce");
 
         Disponibilidad = new ButtonGroup();
         Disponibilidad.add(si);
         Disponibilidad.add(no);
         nombre.setBounds(140, 40, ANCHOC, ALTOC);
-        precio.setBounds(140,70, ANCHOC, ALTOC);
+        precio.setBounds(140, 70, ANCHOC, ALTOC);
         codigo.setBounds(140, 10, ANCHOC, ALTOC);
         marca.setBounds(350, 40, ANCHOC, ALTOC);
         stock.setBounds(140, 100, ANCHOC, ALTOC);
@@ -182,19 +182,19 @@ public class vista extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FiltroDao fd = new FiltroDao();
-         
-                Filtro f = new Filtro(codigo.getText(), Integer.parseInt(stock.getText()),true, marca.getSelectedItem().toString(), nombre.getText(), Integer.parseInt(precio.getText()));
+
+                Filtro f = new Filtro(nombre.getText(), codigo.getText(), marca.getSelectedItem().toString(), Integer.parseInt(stock.getText()), Integer.parseInt(precio.getText()), true);
 
                 if (no.isSelected()) {
                     f.setDisponibilidad(false);
                 }
 
                 if (fd.create(f)) {
-                    JOptionPane.showMessageDialog(null, "Filtro registrado con existo");
+                    JOptionPane.showMessageDialog(null, "Producto registrado con existo");
                     limpiarCampos();
                     llenarTabla();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ocurrio un problema al momento de crear el filtro");
+                    JOptionPane.showMessageDialog(null, "Ocurrio un problema al momento de crear el producto");
                 }
             }
         });
@@ -203,18 +203,19 @@ public class vista extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FiltroDao fd = new FiltroDao();
-                 Filtro f = new Filtro(codigo.getText(), Integer.parseInt(stock.getText()),true, marca.getSelectedItem().toString(), nombre.getText(), Integer.parseInt(precio.getText()));
+
+                Filtro f = new Filtro(nombre.getText(), codigo.getText(), marca.getSelectedItem().toString(), Integer.parseInt(stock.getText()), Integer.parseInt(precio.getText()), true);
 
                 if (no.isSelected()) {
                     f.setDisponibilidad(false);
                 }
 
                 if (fd.update(f)) {
-                    JOptionPane.showMessageDialog(null, "Filtro Modificacion con exito");
+                    JOptionPane.showMessageDialog(null, "Producto Modificacion con exito");
                     limpiarCampos();
                     llenarTabla();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ocurrio un problema al momento de modificar el filtro");
+                    JOptionPane.showMessageDialog(null, "Ocurrio un problema al momento de modificar el producto");
 
                 }
             }
@@ -225,11 +226,11 @@ public class vista extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 FiltroDao fd = new FiltroDao();
                 if (fd.delete(codigo.getText())) {
-                    JOptionPane.showMessageDialog(null, "Filtro Eliminado con exito");
+                    JOptionPane.showMessageDialog(null, "Producto Eliminado con exito");
                     limpiarCampos();
                     llenarTabla();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ocurrio un problema al momento de eliminar el filtro");
+                    JOptionPane.showMessageDialog(null, "Ocurrio un problema al momento de eliminar el producto");
                 }
             }
         });
@@ -240,7 +241,7 @@ public class vista extends JFrame {
                 FiltroDao fd = new FiltroDao();
                 Filtro f = fd.read(codigo.getText());
                 if (f == null) {
-                    JOptionPane.showMessageDialog(null, "El filtro buscado no se ha encontrado");
+                    JOptionPane.showMessageDialog(null, "El producto buscado no se ha encontrado");
                 } else {
                     codigo.setText(f.getCodigo());
                     marca.setSelectedItem(f.getTipo());
@@ -281,7 +282,7 @@ public class vista extends JFrame {
 
     public void limpiarCampos() {
         codigo.setText("");
-        marca.setSelectedItem("");
+        marca.setSelectedItem("Fruta");
         stock.setText("");
         precio.setText("");
         nombre.setText("");
